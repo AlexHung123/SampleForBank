@@ -1,0 +1,32 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI-test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test: 
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17.2
+        id: go
+        
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Test
+        run: make test
+        
+
+
